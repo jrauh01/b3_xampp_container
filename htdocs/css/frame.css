@@ -1,0 +1,35 @@
+body {
+    margin: 0 30em;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav > ul {
+    display: flex;
+    list-style-type: none;
+    column-gap: 0.5em;
+    padding: 0;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 5em;
+}
+
+footer ul {
+    padding-left: 1em;
+}
+
+.nettmann-logo {
+    width: 200px;
+}
+
+.footer-hr {
+    border-color: #0182da;
+}
