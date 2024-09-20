@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['kundennummer'])) {
+    header("Location: Login.php");
+    die();
+}
+?>
 <html lang="de">
 <head>
     <title>Autohaus Nettmann</title>
@@ -27,11 +34,8 @@
 </header>
 
 
+<p>Kundennummer: <?= $_SESSION['kundennummer'] ?></p>
 <form action="MietwagenBeleg.php" method="post">
-    <label>
-        Kundennummer:
-        <input type="text" name="kundennummer">
-    </label>
     <p>Welche Fahrzeugklasse bevorzugen Sie:</p>
     <label>
         <input type="radio" name="fahrzeugklasse" value="Kleinwagen">

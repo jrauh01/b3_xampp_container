@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['kundennummer'])) {
+    header("Location: Login.php");
+    die();
+}
+
 $abholorte = [
     'nettmann' => 'Autohaus Nettmann',
     'ottomann' => 'Autohaus Ottomann',
@@ -7,7 +14,7 @@ $abholorte = [
 
 if (isset($_POST['submit'])) {
     // Read form data
-    $kundennummer = $_POST['kundennummer'] ?? 'n/a';
+    $kundennummer = $_SESSION['kundennummer'];
     $fahrzeugklasse = $_POST['fahrzeugklasse'] ?? 'n/a';
     $klimaanlage = $_POST['klimaanlage'] ?? null;
     $navigator = $_POST['navigator'] ?? null;
@@ -15,7 +22,7 @@ if (isset($_POST['submit'])) {
     $abholort = $_POST['abholort'] ?? 'n/a';
 
 } else {
-    header("Location: ../Mietwagen.html");
+    header("Location: ../Mietwagen.php");
     die();
 }
 ?>
@@ -43,7 +50,7 @@ if (isset($_POST['submit'])) {
                 <li>|</li>
                 <li><a href="#">Mitarbeiter</a></li>
                 <li>|</li>
-                <li><a href="Mietwagen.html">Mietwagen</a></li>
+                <li><a href="Mietwagen.php">Mietwagen</a></li>
             </ul>
         </nav>
         <h1>Mietwagen - Kundenbeleg</h1>
