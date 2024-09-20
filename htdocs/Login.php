@@ -3,19 +3,14 @@ session_start();
 
 $PASSWORD = '123';
 
-if (isset($_SESSION['kundennummer'])) {
-    header("Location: Mietwagen.php");
-    die();
-}
-
-if (isset($_POST['submit'])) {
+if (isset($_POST['logout'])) {
+    session_destroy();
+} else if (isset($_POST['submit'])) {
     if (isset($_POST['kundennummer']) && isset($_POST['password'])) {
         $kundennummer = $_POST['kundennummer'];
 
         if ($_POST['password'] === $PASSWORD) {
             $_SESSION['kundennummer'] = $kundennummer;
-            header("Location: Mietwagen.php");
-            die();
         }
     }
 }
@@ -57,19 +52,26 @@ if (isset($_POST['submit'])) {
     <img src="img/Nettmann_logo.png" alt="Nettmann Logo" class="nettmann-logo">
 </header>
 
-<form method="post">
-    <label>
-        <span>Kundennummer:</span>
-        <input type="text" name="kundennummer">
-    </label>
-    <br>
-    <label>
-        <span>Passwort:</span>
-        <input type="password" name="password">
-    </label>
-    <br>
-    <input type="submit" name="submit" value="Anmelden">
-</form>
+<?php if (isset($_SESSION['kundennummer'])): ?>
+    <p>Kundennummer: <?= $_SESSION['kundennummer'] ?></p>
+    <form method="post">
+        <input type="submit" name="logout" value="Abmelden">
+    </form>
+<?php else: ?>
+    <form method="post">
+        <label>
+            <span>Kundennummer:</span>
+            <input type="text" name="kundennummer">
+        </label>
+        <br>
+        <label>
+            <span>Passwort:</span>
+            <input type="password" name="password">
+        </label>
+        <br>
+        <input type="submit" name="submit" value="Anmelden">
+    </form>
+<?php endif; ?>
 
 <hr class="footer-hr">
 <footer>

@@ -4,6 +4,7 @@ if (!isset($_SESSION['kundennummer'])) {
     header("Location: Login.php");
     die();
 }
+
 ?>
 <html lang="de">
 <head>
@@ -32,7 +33,6 @@ if (!isset($_SESSION['kundennummer'])) {
 
     <img src="img/Nettmann_logo.png" alt="Nettmann Logo" class="nettmann-logo">
 </header>
-
 
 <p>Kundennummer: <?= $_SESSION['kundennummer'] ?></p>
 <form action="MietwagenBeleg.php" method="post">
